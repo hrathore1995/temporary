@@ -1,5 +1,6 @@
 retail_audit_env/
 data/raw/
+data/processed/
 __pycache__/
 *.pyc
 *.pyo
@@ -9,8 +10,4 @@ __pycache__/
 *.json
 *.zip
 .DS_Store
-results/detections/
-results/planogram/
-results/pipeline_output/
-results/retailaudit_yolo11/
 yolo11n.pt

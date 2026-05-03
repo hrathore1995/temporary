@@ -1,36 +1,30 @@
 import os
 import torch
 from ultralytics import YOLO
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_YAML = os.path.join(BASE_DIR, "data", "sku110k.yaml")
-WEIGHTS_DIR = os.path.join(BASE_DIR, "models", "weights")
-os.makedirs(WEIGHTS_DIR, exist_ok=True)
-
-DEVICE = "mps" if torch.backends.mps.is_available() else "cpu"
-MODEL = "yolo11n.pt"
-EPOCHS = 10
-BATCH_SIZE = 32
-IMG_SIZE = 416
-PROJECT = os.path.join(BASE_DIR, "results")
-RUN_NAME = "retailaudit_yolo11"
-
+base_dir=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+data_yaml=os.path.join(base_dir,"data","sku110k.yaml")
+weights_dir=os.path.join(base_dir,"models","weights")
+os.makedirs(weights_dir,exist_ok=True)
+device="mps" if torch.backends.mps.is_available() else "cpu"
+model="yolo11n.pt"
+EPOCHS=10
+batch_size=32
+img_size=416
+project=os.path.join(base_dir,"results")
+RUN_NAME="retailaudit_yolo11"
 def train():
-    print(f"Device: {DEVICE}")
-    print(f"Data: {DATA_YAML}")
+    print(f"device: {device}")
+    print(f"Data: {data_yaml}")
     print(f"Epochs: {EPOCHS}")
-    print(f"Batch size: {BATCH_SIZE}")
-    print("=" * 50)
-
-    model = YOLO(MODEL)
-
+    print(f"Batch size: {batch_size}")
+    model=YOLO(model)
     model.train(
-        data=DATA_YAML,
+        data=data_yaml,
         epochs=EPOCHS,
-        batch=BATCH_SIZE,
-        imgsz=IMG_SIZE,
-        device=DEVICE,
-        project=PROJECT,
+        batch=batch_size,
+        imgsz=img_size,
+        device=device,
+        project=project,
         name=RUN_NAME,
         exist_ok=True,
         pretrained=True,
@@ -42,14 +36,9 @@ def train():
         val=True,
         plots=True,
         verbose=True,
-        fraction=0.2
-    )
-
+        fraction=0.2)
     print("Training complete.")
-    print(f"Best weights saved to: {PROJECT}/{RUN_NAME}/weights/best.pt")
-
+    print(f"Best weights saved to: {project}/{RUN_NAME}/weights/best.pt")
 if __name__ == "__main__":
-    print("=" * 50)
     print("RETAILAUDIT-NET TRAINING")
-    print("=" * 50)
     train()
