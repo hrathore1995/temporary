@@ -188,7 +188,7 @@ Output goes to `results/pipeline_output/`. Or just use the HF space if don't wan
 python3 src/evaluate.py
 ```
 
-This runs on 20 test images and prints metrics and saves them to `results/evaluation_results.json` and a plot to `results/evaluation_plot.png`.
+This runs on test images and prints metrics and saves them to `results/evaluation_results.json` and a plot to `results/evaluation_plot.png`.
 
 ## Results
 
@@ -202,7 +202,7 @@ Training (10 epochs, image size 416):
 | Best | - | 0.641 | 0.334 |
 
 
-Evaluation on 20 test images:
+Evaluation on test images:
 
 | Metric | Score |
 |--------|-------|
